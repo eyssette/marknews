@@ -161,6 +161,8 @@ function CSSclassDependingOnPublishedDate(day) {
 		return 'fewDaysAgo'
 	} else if (timeDifference < (24 * 7)) {
 		return 'someDaysAgo'
+	} else if (timeDifference < (24 * 7) * 4) {
+		return 'fewWeeksAgo'
 	} else {
 		return 'later';
 	}

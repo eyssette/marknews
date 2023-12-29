@@ -114,12 +114,19 @@ body.displaySections {
 
 .rss-element.fewHoursAgo {
 	background-color: #999;
+	
 }
 .rss-element.fewDaysAgo {
 	background-color: #CCC;
+	
 }
 .rss-element.someDaysAgo {
 	background-color: #EEE;
+	
+}
+.rss-element.fewWeeksAgo {
+	border: 1px solid #CCC;
+	
 }
 
 
