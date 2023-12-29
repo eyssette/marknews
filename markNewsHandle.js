@@ -4,11 +4,12 @@ async function RSStoHTML(RSSfeeds, displaySource) {
 		for (const RSSfeed of RSSfeeds) {
 			const RSSfeedContent = await getRSSFeed(RSSfeed);
 			RSSfeedsContent.push(...RSSfeedContent);
+			// Tri selon la date de publication
+			RSSfeedsContent.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 		}
 		// On supprime les doublons
 		RSSfeedsContent = [...new Map(RSSfeedsContent.map(v => [v.link, v])).values()]
-		// Tri selon la date de publication
-		RSSfeedsContent.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
 		for (const RSSfeedElement of RSSfeedsContent) {
 			const displaySourceHTML = displaySource ? RSSfeedElement.source+" / " : "";
 			// Récupération de la date de publication
