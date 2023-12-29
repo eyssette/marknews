@@ -214,7 +214,7 @@ async function getRSSFeed(url) {
 			source: feedTitle ? feedTitle.textContent : "",
 			title: item.querySelector('title') ? item.querySelector('title').textContent : "",
 			link: item.querySelector('link') ? item.querySelector('link').textContent : "",
-			pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : "",
+			pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg) ? items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg)[0].match(/>.*</)[0].replace("<","").replace(">","") : "",
 			description: item.querySelector('description') ? item.querySelector('description').textContent : "",
 		  }));
 	} else {
