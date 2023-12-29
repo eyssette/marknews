@@ -34,7 +34,7 @@ function getMarkdownContent() {
 				createMarkNews(markNewsData);
 			})
 			.catch((error) => {
-				markNewsData = parseMarkdown(defaultMarkpage);
+				markNewsData = parseMarkdown(defaultMarkNews);
 				createMarkNews(markNewsData);
 				alert("Il y a une erreur dans l'URL ou dans la syntaxe du fichier source")
 				console.log(error);
