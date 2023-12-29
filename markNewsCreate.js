@@ -209,6 +209,7 @@ async function getRSSFeed(url) {
 	const feedTitle = xmlDoc.querySelector('title');
 	let feedData
 	if (items.length > 0) {
+		// Flux RSS
 		feedData = Array.from(items).map((item) => ({
 			source: feedTitle ? feedTitle.textContent : "",
 			title: item.querySelector('title') ? item.querySelector('title').textContent : "",
@@ -217,14 +218,14 @@ async function getRSSFeed(url) {
 			description: item.querySelector('description') ? item.querySelector('description').textContent : "",
 		  }));
 	} else {
-		// Cas des vidéos Youtube
+		// Flux ATOM
 		const entries = xmlDoc.querySelectorAll('entry');
 		feedData = Array.from(entries).map((entry) => ({
 			source: feedTitle ? feedTitle.textContent : "",
 			title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
 			link: entry.querySelector('link') ? entry.querySelector('link').getAttribute("href") : "",
 			pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
-			description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : "",
+			description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent : "",
 		  }));
 	}
     return feedData;
