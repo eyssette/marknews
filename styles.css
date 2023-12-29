@@ -80,6 +80,10 @@ main {
 	height:82vh;
 }
 
+.displayLoader main {
+	width:100vw;
+}
+
 body.displaySections {
 	overflow: hidden;
 }
@@ -149,6 +153,31 @@ body.displaySections {
 	display: block;
 	margin-top:0.5em;
 	font-style: italic;
+}
+
+#loader {
+	border: 16px solid #f3f3f3;
+	border-top: 16px solid #3498db;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	animation: spin 2s linear infinite;
+	display: block;
+	text-align: center;
+	padding: 20px;
+	margin: 3em auto;
+	position:absolute;
+	left: 40%;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 @media screen and (max-width:500px) {

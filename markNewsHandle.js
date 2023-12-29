@@ -72,6 +72,8 @@ function handleMarkNews(){
 	changeDisplayBasedOnParams(params);
 
 	async function changeDisplayBasedOnParams(param) {
+		bodyElement.classList.add("displayLoader")
+		mainElement.innerHTML='<span id="loader"></span>'
 		let tabID = 0
 		if (param) {
 			tabID = param.t - 1 > -1 ? param.t - 1 : 0;
@@ -79,6 +81,7 @@ function handleMarkNews(){
 				markNewsTabs[tabID] = await getData(tabID, markNewsData)
 			}
 		}
+		bodyElement.classList.remove("displayLoader")
 		mainElement.innerHTML = markNewsTabs[tabID];
 		showOnlyThisTab(tabID)
 		if (markNewsData.RSSfeedstitles[tabID].length>0) {

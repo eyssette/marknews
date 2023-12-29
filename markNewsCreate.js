@@ -188,6 +188,7 @@ async function createMarkNews(data) {
 
 	tabsElement.innerHTML = data.tabsTitles.join('')
 	tabsElement.firstChild.classList.add("active");
+	bodyElement.classList.remove("displayLoader")
 	mainElement.innerHTML = markNewsTabs[0];
 	handleMarkNews()
 }
