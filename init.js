@@ -41,7 +41,7 @@ let markNewsData = {};
 let markNewsTabs = [];
 
 const tabInfoMD = `
-Ce site a été créé avec [Marknews](https://eyssette.forge.aeif.fr/marknews), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
+Ce site a été créé avec [MarkNews](https://eyssette.forge.aeif.fr/marknews), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
 
 - Auteur : [Cédric Eyssette](https://eyssette.github.io/)
 - Sources sur la [Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/marknews)
