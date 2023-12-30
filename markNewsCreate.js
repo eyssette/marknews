@@ -147,7 +147,7 @@ function parseMarkdown(markdownContent) {
 		tabsTitles: tabsTitles,
 		RSSfeedstitles: RSSfeedstitles,
 		RSSfeeds: RSSfeeds,
-		infoTab: markdownToHTML(tabInfoMD + "```" + markdownContent + "```")
+		infoTab: markdownToHTML(tabInfoMD + "```\n" + markdownContent + "\n```")
 	};
 
 	return markNewsData
