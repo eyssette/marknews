@@ -230,4 +230,10 @@ a {
 	#loader {
 		left: 20%;
 	}
+	.displayInfo main {
+		width: 90%;
+		padding: 0 1em;
+		font-size: 0.9em;
+		overflow-wrap: break-word;
+	}
 }
