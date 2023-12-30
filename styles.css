@@ -51,6 +51,12 @@ nav h2 aside {
 	font-weight: 100;
 	font-size: 0.8em;
 }
+nav h2:last-child {
+	align-items: end;
+}
+nav h2:last-child svg {
+	width: 1.25em!important;
+}
 
 nav a {
 	color:white;
@@ -104,6 +110,23 @@ body.displaySections {
 	margin-top:30px;
 }
 
+body.displayInfo {
+	overflow-y: auto;
+}
+
+.displayInfo main {
+	column-count: 1;
+	height:auto;
+	width: 500px;
+	padding:0 30% 2em;
+	font-size: 1.25em;
+}
+
+pre {
+	border:1px solid grey;
+	padding:20px 10px;
+	overflow-x:scroll;
+}
 
 .rss-element {
 	width:250px;
@@ -142,7 +165,7 @@ body.displaySections {
 	font-size: 0.95em;
 }
 
-.rss-title a {
+a {
 	color:#4a0706;
 }
 

@@ -8,11 +8,12 @@ Un outil pour créer un tableau de bord de flux RSS à partir d'un simple fichie
 - https://www.youtube.com/feeds/videos.xml?channel_id=UCdKTlsmvczkdvGjiLinQwmw
 
 ## Mastodon <aside>Tags Educ</aside>
-- https://scholar.social/tags/mastoprof.rss
-- https://scholar.social/tags/teamprof.rss
-- https://scholar.social/tags/teameduc.rss
-- https://scholar.social/tags/prof.rss
-- https://scholar.social/tags/enseignement.rss
+- https://mastodon.social/tags/mastoprof.rss
+- https://mastodon.social/tags/teamprof.rss
+- https://mastodon.social/tags/teameduc.rss
+- https://mastodon.social/tags/prof.rss
+- https://mastodon.social/tags/enseignement.rss
+- https://mastodon.social/tags/%C3%89ducationNationale.rss
 
 ## Pédagogie
 
@@ -38,6 +39,30 @@ const shortcuts = [
 // Contenu de Marknews
 let markNewsData = {};
 let markNewsTabs = [];
+
+const tabInfoMD = `
+Ce site a été créé avec [Marknews](https://eyssette.forge.aeif.fr/marknews), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
+
+- Auteur : [Cédric Eyssette](https://eyssette.github.io/)
+- Sources sur la [Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/marknews)
+
+#### Comment créer son propre tableau de bord ?
+
+1. Créer un fichier en Markdown par exemple sur [CodiMD](https://codimd.apps.education.fr/)
+2. Respectez la syntaxe de MarkNews pour créer votre tableau de bord
+3. Votre tableau de bord est alors disponible à l'adresse suivante : https://eyssette.forge.aeif.fr/marknews/#URL (en remplaçant URL par l'URL de votre fichier en markdown)
+
+#### Syntaxe de Marknews
+
+- Le titre 1 en Markdown définit le titre de votre tableau de bord
+- Ce que vous écrivez entre le titre 1 et le premier titre 2 correspond au message initial à côté du titre de votre tableau de bord
+- Les titres 2 définissent les onglets de votre tableau de bord
+- Les titres 3 (optionnels) permettent de faire des sections dans chaque onglet
+- On utilise une liste d'éléments pour indiquer le ou les flux RSS (ou Atom) à regrouper sous chaque onglet ou chaque section
+
+#### Source en Markdown de ce tableau de bord
+
+`
 
 // Variables pour la gestion de l'en-tête YAML
 let yamlData;

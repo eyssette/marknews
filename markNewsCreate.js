@@ -146,7 +146,8 @@ function parseMarkdown(markdownContent) {
 		initialMessage: markdownToHTML(initialMessageContent),
 		tabsTitles: tabsTitles,
 		RSSfeedstitles: RSSfeedstitles,
-		RSSfeeds: RSSfeeds
+		RSSfeeds: RSSfeeds,
+		infoTab: markdownToHTML(tabInfoMD + "```" + markdownContent + "```")
 	};
 
 	return markNewsData
@@ -174,6 +175,7 @@ async function createMarkNews(data) {
 
 
 	titleElement.innerHTML = data.title;
+	const tabsElementInitialHTML = tabsElement.innerHTML;
 
 	if (data.initialMessage.length>0) {
 		initialMessageElement.innerHTML = data.initialMessage;
@@ -185,8 +187,11 @@ async function createMarkNews(data) {
 
 	markNewsTabs[0] = await getData(0, data);
 
+	// Dans la barre de navigation, le dernier onglet est un onglet d'information
+	markNewsTabs[data.tabsTitles.length] = data.infoTab;
 
-	tabsElement.innerHTML = data.tabsTitles.join('')
+
+	tabsElement.innerHTML = data.tabsTitles.join('')+tabsElementInitialHTML;
 	tabsElement.firstChild.classList.add("active");
 	bodyElement.classList.remove("displayLoader")
 	mainElement.innerHTML = markNewsTabs[0];

@@ -77,6 +77,7 @@ function handleMarkNews(){
 		let tabID = 0
 		if (param) {
 			tabID = param.t - 1 > -1 ? param.t - 1 : 0;
+			if (param.t == "info") {tabID = links.length - 1}
 			if (markNewsTabs[tabID] === undefined) {
 				markNewsTabs[tabID] = await getData(tabID, markNewsData)
 			}
@@ -84,10 +85,16 @@ function handleMarkNews(){
 		bodyElement.classList.remove("displayLoader")
 		mainElement.innerHTML = markNewsTabs[tabID];
 		showOnlyThisTab(tabID)
-		if (markNewsData.RSSfeedstitles[tabID].length>0) {
-			bodyElement.classList.add("displaySections")
-		} else {
+		if (param.t === "info") {
 			bodyElement.classList.remove("displaySections")
+			bodyElement.classList.add("displayInfo");
+		  } else {
+			bodyElement.classList.remove("displayInfo");
+			if (markNewsData.RSSfeedstitles[tabID].length>0) {
+				bodyElement.classList.add("displaySections")
+			} else {
+				bodyElement.classList.remove("displaySections")
+			}
 		}
 	}
 
