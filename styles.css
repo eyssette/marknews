@@ -50,6 +50,7 @@ nav h2 aside {
 	font-size: 0.8em;
 }
 nav h2:last-child {
+	margin-right:2em;
 }
 nav h2:last-child svg {
 	padding-top:4px;
