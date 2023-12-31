@@ -202,6 +202,10 @@ a {
 	}
 }
 
+input {
+	width:100%;
+}
+
 @media screen and (max-width:500px) {
 	body {
 		overflow-y: auto;

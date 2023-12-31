@@ -143,3 +143,8 @@ function handleMarkNews(){
 
 
 }
+
+function goToNewMarkNews() {
+	const src = document.getElementById('mdSource').value;
+	window.open('https://eyssette.forge.aeif.fr/marknews/#'+src)
+}
