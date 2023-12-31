@@ -200,45 +200,47 @@ async function createMarkNews(data) {
 
 async function getRSSFeed(url) {
   // Pour éviter les erreurs CORS
-  const corsProxy = "https://corsproxy.io/?";
-  const urlFeed = corsProxy + encodeURIComponent(url);
-  try {
-    // On récupère le contenu de l'URL
-    const response = await fetch(urlFeed);
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`);
-    }
-    // On convertit le flux RSS en objet DOM
-    const xmlString = await response.text();
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
-    // On extrait les informations du flux RSS
-    const items = xmlDoc.querySelectorAll('item');
-	const feedTitle = xmlDoc.querySelector('title');
-	let feedData
-	if (items.length > 0) {
-		// Flux RSS
-		feedData = Array.from(items).map((item) => ({
-			source: feedTitle ? feedTitle.textContent : "",
-			title: item.querySelector('title') ? item.querySelector('title').textContent : "",
-			link: item.querySelector('link') ? item.querySelector('link').textContent : "",
-			pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg) ? items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg)[0].match(/>.*</)[0].replace("<","").replace(">","") : "",
-			description: item.querySelector('description') ? item.querySelector('description').textContent : "",
-		  }));
-	} else {
-		// Flux ATOM
-		const entries = xmlDoc.querySelectorAll('entry');
-		feedData = Array.from(entries).map((entry) => ({
-			source: feedTitle ? feedTitle.textContent : "",
-			title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
-			link: entry.querySelector('link') ? entry.querySelector('link').getAttribute("href") : "",
-			pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
-			description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent : "",
-		  }));
+  const corsProxyList = ["https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
+
+  for (const corsProxy of corsProxyList) {
+	const urlFeed = corsProxy + encodeURIComponent(url);
+	try {
+		// On récupère le contenu de l'URL
+		const response = await fetch(urlFeed);
+		if (!response.ok) {
+			console.log(`${response.status} ${response.statusText}`);
+		}
+		// On convertit le flux RSS en objet DOM
+		const xmlString = await response.text();
+		const parser = new DOMParser();
+		const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+		// On extrait les informations du flux RSS
+		const items = xmlDoc.querySelectorAll('item');
+		const feedTitle = xmlDoc.querySelector('title');
+		let feedData
+		if (items.length > 0) {
+			// Flux RSS
+			feedData = Array.from(items).map((item) => ({
+				source: feedTitle ? feedTitle.textContent : "",
+				title: item.querySelector('title') ? item.querySelector('title').textContent : "",
+				link: item.querySelector('link') ? item.querySelector('link').textContent : "",
+				pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg) ? items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg)[0].match(/>.*</)[0].replace("<","").replace(">","") : "",
+				description: item.querySelector('description') ? item.querySelector('description').textContent : "",
+			}));
+		} else {
+			// Flux ATOM
+			const entries = xmlDoc.querySelectorAll('entry');
+			feedData = Array.from(entries).map((entry) => ({
+				source: feedTitle ? feedTitle.textContent : "",
+				title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
+				link: entry.querySelector('link') ? entry.querySelector('link').getAttribute("href") : "",
+				pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
+				description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent : "",
+			}));
+		}
+		return feedData;
+	} catch (error) {
+		console.log(`Erreur lors de la récupération du flux RSS : ${error.message}`)
 	}
-    return feedData;
-  } catch (error) {
-    // On gère les erreurs de connexion ou de traitement
-    throw new Error(`Erreur lors de la récupération du flux RSS : ${error.message}`);
   }
 }
