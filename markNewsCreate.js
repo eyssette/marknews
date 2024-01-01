@@ -130,7 +130,8 @@ function parseMarkdown(markdownContent) {
 			for (const section of sections) {
 				const indexEndTitleSection = section.indexOf('\n');
 				const sectionRSStitle = section.substring(0,indexEndTitleSection);
-				const sectionRSSfeed = getElementsFromMarkdownList(section);
+				const sectionRSScontent = section.substring(indexEndTitleSection)
+				const sectionRSSfeed = getElementsFromMarkdownList(sectionRSScontent);
 				RSStitles.push(sectionRSStitle);
 				RSSfeed.push(sectionRSSfeed);
 			}
