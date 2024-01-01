@@ -200,13 +200,14 @@ async function createMarkNews(data) {
 
 async function getRSSFeed(url) {
   // Pour éviter les erreurs CORS
-  const corsProxyList = ["https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
+  const corsProxyList = ["", "https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
 
   for (const corsProxy of corsProxyList) {
-	const urlFeed = corsProxy + encodeURIComponent(url);
+	const urlFeed = corsProxy == '' ? url : corsProxy + encodeURIComponent(url);
 	try {
 		// On récupère le contenu de l'URL
 		const response = await fetch(urlFeed);
+		console.log(url + " ⭢ proxy : " + corsProxy);
 		if (!response.ok) {
 			console.log(`${response.status} ${response.statusText}`);
 		}
