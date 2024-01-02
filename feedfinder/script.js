@@ -111,7 +111,7 @@ async function getFeed(fetchObject) {
 		const html = URLandHTML[1];
 		if (html) {
 			const linkToRSS = html.querySelector('link[type$=xml][rel="alternate"]');
-			const RSS = linkToRSS ? linkToRSS.href : undefined;
+			let RSS = linkToRSS ? linkToRSS.href : undefined;
 			if (RSS) {
 				if (RSS.includes(baseURL)) {
 					RSS = url+RSS.replace(baseURL,"")
