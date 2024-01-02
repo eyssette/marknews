@@ -55,7 +55,7 @@ function filterElementWithNoContent(element) {
 
 // Fonction pour récupérer une liste d'éléments markdown
 function getElementsFromMarkdownList(txt) {
-	return txt.match(/- .*/g).map(item => item.slice(2))
+	return txt.match(/- .*/g).map(item => item.split(' ')[1])
 }
 
 // Fonction pour ne garder qu'un extrait d'un texte
