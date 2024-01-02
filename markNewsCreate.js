@@ -234,7 +234,7 @@ async function getRSSFeed(url) {
 				title: item.querySelector('title') ? item.querySelector('title').textContent : "",
 				link: item.querySelector('link') ? item.querySelector('link').textContent : "",
 				pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg) ? items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg)[0].match(/>.*</)[0].replace("<","").replace(">","") : "",
-				description: item.querySelector('description') ? item.querySelector('description').textContent : "",
+				description: item.querySelector('description') ? item.querySelector('description').textContent.replace(/\<img.*?>/,"") : "",
 			}));
 		} else {
 			// Flux ATOM
@@ -245,7 +245,7 @@ async function getRSSFeed(url) {
 				title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
 				link: entry.querySelector('link') ? entry.querySelector('link').getAttribute("href") : "",
 				pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
-				description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent : "",
+				description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent.replace(/\<img.*?>/,"") : "",
 			}));
 		}
 		return feedData;
