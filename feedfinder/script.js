@@ -3,7 +3,23 @@ function filterURLs(element) {
 	return element
 }
 
-function checkKnownTypes(url) {
+async function getYTchannelFromUserName(url) {
+	try {
+		const response = await fetch(url);
+		const json = await response.json();
+		if (json) {
+			return json.items[0].id
+		}
+	} catch (error) {
+		return false
+	}
+}
+
+async function checkKnownTypes(url) {
+	if (url.includes("https://www.youtube.com")) {
+		url = url.replace("/playlists","")
+		url = url.replace(/\/videos$/,"")
+	}
 	const youtubePlaylist = 'https://www.youtube.com/playlist?list='
 	if (url.includes(youtubePlaylist)) {
 		url = "https://www.youtube.com/feeds/videos.xml?playlist_id=" + url.replace(youtubePlaylist,'')
@@ -17,6 +33,21 @@ function checkKnownTypes(url) {
 	if (url.includes(".xml") || url.includes("feed")) {
 		return [url,false]
 	}
+	const youtubeUser = ["https://www.youtube.com/user/", "https://www.youtube.com/@", "https://www.youtube.com/c/"]
+	if (youtubeUser.some(element => url.includes(element))) {
+		for (const youtubeUserElement of youtubeUser) {
+			url = url.replace(youtubeUserElement,"")
+		}
+		const getYTchannelWebsite = "https://yt.lemnoslife.com/channels?handle=@"
+		url = getYTchannelWebsite + url
+		const idChannel = await getYTchannelFromUserName(url)
+		if (idChannel) {
+			url = "https://www.youtube.com/feeds/videos.xml?channel_id="+idChannel
+			return [url,false]
+		} else {
+			return false
+		}
+	}
 	return false;
 }
 
@@ -26,7 +57,7 @@ async function fetchURLS(urls) {
 	let URLSsuccess = []
 	let URLSerrors = [];
 	for (const url of urls) {
-		const checkKnownTypesResult = checkKnownTypes(url)
+		const checkKnownTypesResult = await checkKnownTypes(url)
 		if (checkKnownTypesResult === false) {
 			for (const corsProxy of corsProxyList) {
 				try {
