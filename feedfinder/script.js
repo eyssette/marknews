@@ -18,6 +18,7 @@ async function getYTchannelFromUserName(url) {
 async function checkKnownTypes(url) {
 	if (url.includes("https://www.youtube.com")) {
 		url = url.replace("/playlists","")
+		url = url.replace(/\/playlist$/,"")
 		url = url.replace(/\/videos$/,"")
 	}
 	const youtubePlaylist = 'https://www.youtube.com/playlist?list='
