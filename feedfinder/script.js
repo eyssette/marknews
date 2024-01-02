@@ -50,6 +50,24 @@ async function fetchURLS(urls) {
 	return {success: URLSsuccess, errors: URLSerrors}
 }
 
+async function getTitle(url) {
+	for (const corsProxy of corsProxyList) {
+		try {
+			const response = await fetch(corsProxy+url);
+			const responseString = await response.text();
+			if (responseString) {
+				const parser = new DOMParser();
+				const xml = parser.parseFromString(responseString, 'text/xml');
+				const feedTitle = xml.querySelector('title').innerHTML;
+				return feedTitle;
+			}
+			break;
+		} catch (error) {
+			return "Aucun titre trouvé"
+		}
+	}
+}
+
 async function getFeed(fetchObject) {
 	let URLSsuccess = fetchObject.success;
 	let URLSerrors = fetchObject.errors;
@@ -61,12 +79,14 @@ async function getFeed(fetchObject) {
 			const linkToRSS = html.querySelector('link[type$=xml][rel="alternate"]');
 			const RSS = linkToRSS.href
 			if (RSS) {
-				RSSsuccess.push(RSS)
+				const title = await getTitle(RSS);
+				RSSsuccess.push(RSS + ' &#x3C;!-- ' + title + ' --&#x3E')
 			} else {
 				URLSerrors.push([url,'<span class="error-type">error: parse</span>'])
 			}
 		} else {
-			RSSsuccess.push(url)
+			const title = await getTitle(url);
+			RSSsuccess.push(url + ' &#x3C;!-- ' + title + ' --&#x3E')
 		}
 	}
 	return {success: RSSsuccess, errors: URLSerrors}
