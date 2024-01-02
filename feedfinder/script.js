@@ -100,6 +100,8 @@ async function getTitle(url) {
 	}
 }
 
+const baseURL = window.location.href.replace("index.html","")
+
 async function getFeed(fetchObject) {
 	let URLSsuccess = fetchObject.success;
 	let URLSerrors = fetchObject.errors;
@@ -109,8 +111,11 @@ async function getFeed(fetchObject) {
 		const html = URLandHTML[1];
 		if (html) {
 			const linkToRSS = html.querySelector('link[type$=xml][rel="alternate"]');
-			const RSS = linkToRSS.href
+			RSS = linkToRSS.href
 			if (RSS) {
+				if (RSS.includes(baseURL)) {
+					RSS = url+RSS.replace(baseURL,"")
+				}
 				const title = await getTitle(RSS);
 				RSSsuccess.push(RSS + ' &#x3C;!-- ' + title + ' --&#x3E')
 			} else {
