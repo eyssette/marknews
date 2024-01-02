@@ -55,7 +55,10 @@ function filterElementWithNoContent(element) {
 
 // Fonction pour récupérer une liste d'éléments markdown
 function getElementsFromMarkdownList(txt) {
-	return txt.match(/- .*/g).map(item => item.split(' ')[1])
+	const src = txt.match(/- .*/g);
+	const urls = src.map(item => item.split(' ')[1]);
+	feedTitlesInComments = src.map(item => [item.split(' ')[1], item.split(' ').slice(2).join(' ').replace("<!--","").replace("-->","").trim()])
+	return urls
 }
 
 // Fonction pour ne garder qu'un extrait d'un texte
@@ -92,6 +95,9 @@ function parseMarkdown(markdownContent) {
 					const styleElement = document.createElement("style");
 					styleElement.innerHTML = yamlStyle.replaceAll("\\","");
 					document.body.appendChild(styleElement);
+				}
+				if (property == "feedTitlesInComments") {
+					yamlFeedTitlesInComments = yamlData[property];
 				}
 			}
 		} catch (e) {}
@@ -223,6 +229,7 @@ async function getRSSFeed(url) {
 		if (items.length > 0) {
 			// Flux RSS
 			feedData = Array.from(items).map((item) => ({
+				initialURL : url,
 				source: feedTitle ? feedTitle.textContent : "",
 				title: item.querySelector('title') ? item.querySelector('title').textContent : "",
 				link: item.querySelector('link') ? item.querySelector('link').textContent : "",
@@ -233,6 +240,7 @@ async function getRSSFeed(url) {
 			// Flux ATOM
 			const entries = xmlDoc.querySelectorAll('entry');
 			feedData = Array.from(entries).map((entry) => ({
+				initialURL : url,
 				source: feedTitle ? feedTitle.textContent : "",
 				title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
 				link: entry.querySelector('link') ? entry.querySelector('link').getAttribute("href") : "",

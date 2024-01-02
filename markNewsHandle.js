@@ -11,6 +11,15 @@ async function RSStoHTML(RSSfeeds, displaySource) {
 		RSSfeedsContent = [...new Map(RSSfeedsContent.map(v => [v.link, v])).values()]
 
 		for (const RSSfeedElement of RSSfeedsContent) {
+			if (yamlFeedTitlesInComments) {
+				for (const feed of feedTitlesInComments) {
+					const feedURL = feed[0];
+					const feedTitle = feed[1];
+					if (RSSfeedElement.initialURL == feedURL) {
+						RSSfeedElement.source = feedTitle.length > 0 ? feedTitle : RSSfeedElement.source;
+					}
+				}
+			}
 			const displaySourceHTML = displaySource ? RSSfeedElement.source+" / " : "";
 			// Récupération de la date de publication
 			const pubDate = new Date(RSSfeedElement.pubDate);

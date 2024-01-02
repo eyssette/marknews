@@ -77,6 +77,8 @@ Il suffit de copier les adresses des sites qui vous intéressent pour pouvoir re
 // Variables pour la gestion de l'en-tête YAML
 let yamlData;
 let yamlStyle;
+let yamlFeedTitlesInComments;
+let feedTitlesInComments;
 
 // Éléments HTML
 const bodyElement = document.body;
