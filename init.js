@@ -78,7 +78,7 @@ Il suffit de copier les adresses des sites qui vous intéressent pour pouvoir re
 let yamlData;
 let yamlStyle;
 let yamlFeedTitlesInComments;
-let feedTitlesInComments;
+let feedTitlesInComments = [];
 
 // Éléments HTML
 const bodyElement = document.body;

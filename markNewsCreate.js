@@ -57,7 +57,8 @@ function filterElementWithNoContent(element) {
 function getElementsFromMarkdownList(txt) {
 	const src = txt.match(/- .*/g);
 	const urls = src.map(item => item.split(' ')[1]);
-	feedTitlesInComments = src.map(item => [item.split(' ')[1], item.split(' ').slice(2).join(' ').replace("<!--","").replace("-->","").trim()])
+	feedTitlesInCommentsToAdd = src.map(item => [item.split(' ')[1], item.split(' ').slice(2).join(' ').replace("<!--","").replace("-->","").trim()])
+	feedTitlesInComments.push(...feedTitlesInCommentsToAdd);
 	return urls
 }
 
