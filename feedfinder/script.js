@@ -147,8 +147,8 @@ document.getElementById('search-rss').addEventListener('click', async function()
 	const textareaSrc = document.getElementById('urls').value;
 	// Divise le contenu par ligne et place chaque ligne dans un tableau (en supprimant les lignes vides et les éventuels tirets)
 	const urls = textareaSrc.split('\n').filter(el => el).map(filterURLs);
+	resultsElement.innerHTML = '<span id="loader"></span>';
 
-	
 	fetchURLSobject = await fetchURLS(urls);
 	getFeedObject = await getFeed(fetchURLSobject)
 	printResults(getFeedObject)
