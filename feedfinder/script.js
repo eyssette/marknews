@@ -14,6 +14,9 @@ function checkKnownTypes(url) {
 		url = "https://www.youtube.com/feeds/videos.xml?channel_id=" + url.replace(youtubeChannel,'')
 		return [url,false]
 	}
+	if (url.includes(".xml") || url.includes("feed")) {
+		return [url,false]
+	}
 	return false;
 }
 
