@@ -64,6 +64,12 @@ Vous pouvez aussi copier l'URL de votre fichier ci-dessous et cliquer sur "Entre
 - Les titres 3 (optionnels) permettent de faire des sections dans chaque onglet
 - On utilise une liste d'éléments pour indiquer le ou les flux RSS (ou Atom) à regrouper sous chaque onglet ou chaque section
 
+#### Comment trouver le flux RSS d'un site ?
+
+Vous pouvez utiliser cet outil : [Feed finder](./feedfinder/index.html)
+
+Il suffit de copier les adresses des sites qui vous intéressent pour pouvoir retrouver les flux RSS correspondants.
+
 #### Source en Markdown de ce tableau de bord
 
 `
