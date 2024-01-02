@@ -1,3 +1,24 @@
+function compareByDate(a, b) {
+	const dateA = new Date(a.pubDate);
+	const dateB = new Date(b.pubDate);
+  
+	// Vérifier si les dates sont valides
+	const isValidDateA = !isNaN(dateA.getTime());
+	const isValidDateB = !isNaN(dateB.getTime());
+  
+	// Gérer les cas où au moins l'une des dates est invalide
+	if (!isValidDateA && !isValidDateB) {
+	  return 0; // Les deux dates sont invalides, pas de changement d'ordre
+	} else if (!isValidDateA) {
+	  return 1; // La date A est invalide, placer B en premier
+	} else if (!isValidDateB) {
+	  return -1; // La date B est invalide, placer A en premier
+	}
+  
+	// Comparer les dates normalement si les deux sont valides
+	return dateB - dateA;
+  }
+
 async function RSStoHTML(RSSfeeds, displaySource) {
 	let dataHTML = '';
 	let RSSfeedsContent = []
@@ -5,7 +26,7 @@ async function RSStoHTML(RSSfeeds, displaySource) {
 			const RSSfeedContent = await getRSSFeed(RSSfeed);
 			RSSfeedsContent.push(...RSSfeedContent);
 			// Tri selon la date de publication
-			RSSfeedsContent.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+			RSSfeedsContent.sort(compareByDate);
 		}
 		// On supprime les doublons
 		RSSfeedsContent = [...new Map(RSSfeedsContent.map(v => [v.link, v])).values()]
