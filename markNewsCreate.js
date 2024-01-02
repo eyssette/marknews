@@ -206,6 +206,7 @@ async function createMarkNews(data) {
 	handleMarkNews()
 }
 
+
 async function getRSSFeed(url) {
   // Pour éviter les erreurs CORS
   const corsProxyList = ["https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
@@ -220,7 +221,13 @@ async function getRSSFeed(url) {
 			console.log(`${response.status} ${response.statusText}`);
 		}
 		// On convertit le flux RSS en objet DOM
-		const xmlString = await response.text();
+		let xmlString = await response.text();
+		if (xmlString.includes("iso-8859-1")) {
+			const response2 = await fetch(urlFeed);
+			let decoder = new TextDecoder("ISO-8859-1");
+			const buffer = await response2.arrayBuffer();
+    		xmlString = decoder.decode(buffer);
+		}
 		const parser = new DOMParser();
 		const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
 		// On extrait les informations du flux RSS
