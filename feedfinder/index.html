@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Feed Finder</title>
+	<style>html {background-color: white;} body {display:flex; flex-direction: column; max-width: 800px; margin:auto; background-color: #eeeeee75; padding:1em 2em; height:100vh} button, label, textarea {margin-top:1em} button {max-width:200px; margin:1em auto; color:white; background-color: #333; border:none; padding:10px;border-radius: 15px;} .error-type{ display:inline-block; margin-left:2em; color:red}</style>
+</head>
+<body>
+	<h1>Feed Finder</h1>
+	<p>Un outil pour chercher les flux RSS des sites web, pour pouvoir ensuite les intégrer par exemple dans <a href="../index.html">Marknews</a></p>
+
+	<label for="urls">URLs :</label>
+	<textarea id="urls" rows="10" cols="50"></textarea>
+	<button id="search-rss">Chercher les flux RSS</button>
+
+	<h2>Flux RSS</h2>
+	<div id="rss-feeds">
+		Les flux RSS des URL ci-dessous s'afficheront ici
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
