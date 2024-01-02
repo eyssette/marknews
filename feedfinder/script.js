@@ -55,7 +55,7 @@ async function getFeed(fetchObject) {
 		const url = URLandHTML[0];
 		const html = URLandHTML[1];
 		if (html) {
-			const linkToRSS = html.querySelector('link[type$=xml]');
+			const linkToRSS = html.querySelector('link[type$=xml][rel="alternate"]');
 			const RSS = linkToRSS.href
 			if (RSS) {
 				RSSsuccess.push(RSS)
