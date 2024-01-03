@@ -3,9 +3,17 @@ const defaultMarkNews = `
 
 Un outil pour créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown
 
-## Youtube <aside>Philo FR</aside>
-- https://www.youtube.com/feeds/videos.xml?channel_id=UCqA8H22FwgBVcF3GJpp0MQw
-- https://www.youtube.com/feeds/videos.xml?channel_id=UCdKTlsmvczkdvGjiLinQwmw
+## Mastodon <aside>Tags Numérique</aside>
+
+- https://mastodon.social/tags/drane.rss
+- https://mastodon.social/tags/numerique.rss
+- https://mastodon.social/tags/numeriqueeducatif.rss
+- https://mastodon.social/tags/Ress_num.rss
+- https://mastodon.social/tags/CommunsNumeriques.rss
+- https://mastodon.social/tags/LaForge.rss
+- https://mastodon.social/tags/REL.rss
+- https://mastodon.social/tags/LibreEducatif.rss
+- https://mastodon.social/tags/edu_num.rss
 
 ## Mastodon <aside>Tags Educ</aside>
 - https://mastodon.social/tags/mastoprof.rss
@@ -15,14 +23,13 @@ Un outil pour créer un tableau de bord de flux RSS à partir d'un simple fichie
 - https://mastodon.social/tags/enseignement.rss
 - https://mastodon.social/tags/%C3%89ducationNationale.rss
 
-## Pédagogie
+## Vidéos <aside>Philo</aside>
 
-### Par temps clair
-- https://par-temps-clair.blogspot.com/feeds/posts/default?alt=rss
+### Monsieur Phi
+- https://www.youtube.com/feeds/videos.xml?channel_id=UCqA8H22FwgBVcF3GJpp0MQw
 
-### Eduscol
-- https://eduscol.education.fr/sites/default/files/rss/rss_rid271_13.xml
-
+### Philoxime
+- https://www.youtube.com/feeds/videos.xml?channel_id=UCdKTlsmvczkdvGjiLinQwmw
 `
 
 
