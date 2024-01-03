@@ -23,10 +23,16 @@ async function RSStoHTML(RSSfeeds, displaySource) {
 	let dataHTML = '';
 	let RSSfeedsContent = []
 		for (const RSSfeed of RSSfeeds) {
-			const RSSfeedContent = await getRSSFeed(RSSfeed);
-			RSSfeedsContent.push(...RSSfeedContent);
-			// Tri selon la date de publication
-			RSSfeedsContent.sort(compareByDate);
+			let RSSfeedContent
+			try {
+				RSSfeedContent = await getRSSFeed(RSSfeed);
+				RSSfeedsContent.push(...RSSfeedContent);
+				// Tri selon la date de publication
+				RSSfeedsContent.sort(compareByDate);
+			} catch (e) {
+				console.log("Problème avec ce feed :" + RSSfeedContent)
+				console.log(e)
+			}
 		}
 		// On supprime les doublons
 		RSSfeedsContent = [...new Map(RSSfeedsContent.map(v => [v.link, v])).values()]

@@ -252,7 +252,7 @@ async function getRSSFeed(url) {
 				initialURL : url,
 				source: feedTitle ? feedTitle.textContent : "",
 				title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
-				link: entry.querySelector('link') ? (entry.querySelectorAll('link').length > 1 ? entry.querySelector('link[rel="alternate"]').getAttribute("href") : entry.querySelector('link').getAttribute("href")) : "",
+				link: entry.querySelector('link') ? (entry.querySelectorAll('link').length > 1 ? (entry.querySelector('link[rel="alternate"]') ? entry.querySelector('link[rel="alternate"]').getAttribute("href") : entry.querySelector('link').getAttribute("href")) : entry.querySelector('link').getAttribute("href")) : "",
 				pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
 				description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent.replace(/\<img.*?>/,"") : "",
 			}));
