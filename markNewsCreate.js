@@ -2,6 +2,12 @@ function getMarkdownContent() {
 	// Récupération du markdown externe
 	let urlMD = window.location.hash.substring(1); // Récupère l'URL du hashtag sans le #
 	if (urlMD !== "") {
+		// Vérification de la présence d'un raccourci
+		shortcut = shortcuts.find(element => element[0]==urlMD)
+		if (shortcut) {
+			urlMD = shortcut[1]
+		}
+		
 		// Gestion des fichiers hébergés sur github
 		if (urlMD.startsWith("https://github.com")) {
 			urlMD = urlMD.replace(
@@ -18,11 +24,6 @@ function getMarkdownContent() {
 			urlMD =
 				urlMD.replace("?edit", "").replace("?both", "").replace("?view", "").replace(/#$/, "") +
 				"/download";
-		}
-		// Vérification de la présence d'un raccourci
-		shortcut = shortcuts.find(element => element[0]==urlMD)
-		if (shortcut) {
-			urlMD = shortcut[1]
 		}
 
 		// Récupération du contenu du fichier
