@@ -103,7 +103,7 @@ function handleMarkNews(){
 
 	async function changeDisplayBasedOnParams(param) {
 		bodyElement.classList.add("displayLoader")
-		mainElement.innerHTML='<p style="position:absolute; left: 35%;">Le chargement des flux RSS peut prendre du temps. Merci de patienter.</p><span id="loader"></span>'
+		mainElement.innerHTML='<p>Le chargement des flux RSS peut prendre du temps. Merci de patienter.</p><span id="loader"></span>'
 		let tabID = 0
 		if (param) {
 			tabID = param.t - 1 > -1 ? param.t - 1 : 0;

@@ -90,6 +90,11 @@ main {
 	width:100vw;
 }
 
+.displayLoader main p {
+	position:absolute;
+	left: 35%;
+}
+
 body.displaySections {
 	overflow: hidden;
 }
@@ -240,5 +245,9 @@ input {
 		padding: 0 1em;
 		font-size: 0.9em;
 		overflow-wrap: break-word;
+	}
+	.displayLoader main p {
+		width: 80%;
+		left: 5%;
 	}
 }
