@@ -33,7 +33,8 @@ let md = defaultMarkNews;
 // On peut définir des raccourcis vers ses markpages (si on veut forker le projet et avoir une URL plus courte à partager)
 
 const shortcuts = [
-	["myMarkNews","URL"],
+	["philosophie","https://github.com/eyssette/rss/blob/main/philosophie.md"],
+	["edunum","https://github.com/eyssette/rss/blob/main/edunum.md"]
 ]
 
 // Contenu de Marknews
