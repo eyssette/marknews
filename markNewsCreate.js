@@ -210,6 +210,11 @@ async function createMarkNews(data) {
 }
 
 
+function getExtractFirstLine(text) {
+	let index = text.indexOf("\n") > -1 ? text.indexOf("\n") : undefined;
+	return extract(text.substring(0, index));
+}
+
 async function getRSSFeed(url) {
   // Pour éviter les erreurs CORS
   const corsProxyList = ["https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
@@ -242,7 +247,7 @@ async function getRSSFeed(url) {
 			feedData = Array.from(items).map((item) => ({
 				initialURL : url,
 				source: feedTitle ? feedTitle.textContent : "",
-				title: item.querySelector('title') ? item.querySelector('title').textContent : "",
+				title: item.querySelector('title') ? getExtractFirstLine(item.querySelector('title').textContent) : "",
 				link: item.querySelector('link') ? item.querySelector('link').textContent : "",
 				pubDate: item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg) ? items[0].innerHTML.match(/<dc:date.*>.*<\/dc:date>/sg)[0].match(/>.*</)[0].replace("<","").replace(">","") : "",
 				description: item.querySelector('description') ? item.querySelector('description').textContent.replace(/\<img.*?>/,"") : "",
@@ -253,7 +258,7 @@ async function getRSSFeed(url) {
 			feedData = Array.from(entries).map((entry) => ({
 				initialURL : url,
 				source: feedTitle ? feedTitle.textContent : "",
-				title: entry.querySelector('title') ? entry.querySelector('title').textContent : "",
+				title: entry.querySelector('title') ? getExtractFirstLine(entry.querySelector('title').textContent) : "",
 				link: entry.querySelector('link') ? (entry.querySelectorAll('link').length > 1 ? (entry.querySelector('link[rel="alternate"]') ? entry.querySelector('link[rel="alternate"]').getAttribute("href") : entry.querySelector('link').getAttribute("href")) : entry.querySelector('link').getAttribute("href")) : "",
 				pubDate: entry.querySelector('published') ? entry.querySelector('published').textContent : "",
 				description: entry.innerHTML.match(/<media:description>.*<\/media:description>/sg) ? entry.innerHTML.match(/<media:description>.*<\/media:description>/sg)[0].replace("<media:description>","").replace("</media:description>","").replace(/Profitez de .*/,"").replace(/.*nordvpn.*/,"") : entry.querySelector('content') ? entry.querySelector('content').textContent.replace(/\<img.*?>/,"") : "",
