@@ -66,9 +66,11 @@ function getElementsFromMarkdownList(txt) {
 // Fonction pour ne garder qu'un extrait d'un texte
 function extract(txt) {
 	const maxWords = 30;
-	const firstNwords = txt.split(/\s+/).slice(0,maxWords).join(' ');
+	const words = txt.split(/\s+/);
+	const firstNwords = words.slice(0,maxWords).join(' ');
 	const firstNwordsWithoutHTMLtags =  firstNwords.replaceAll(/<.*?>/g," ").replaceAll(/<\/.*?>/g,"").replaceAll(/<.*?\/>/g," ").replaceAll(/<.*?$/g,"");
-	return firstNwordsWithoutHTMLtags + ' …';
+	const endCharacter = words.length > 30 ? ' …' : '';
+	return firstNwordsWithoutHTMLtags + endCharacter;
 }
 
 
