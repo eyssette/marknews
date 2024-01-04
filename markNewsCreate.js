@@ -106,7 +106,7 @@ function parseMarkdown(markdownContent) {
 	}
 
 	// On distingue le header et le contenu
-	const indexfirstH2title = markdownContent.indexOf("## ");
+	const indexfirstH2title = markdownContent.search(/(?<!- )## /);
 	const header = markdownContent.substring(0,indexfirstH2title);
 	const mainContent = markdownContent.substring(indexfirstH2title);
 
