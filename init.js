@@ -5,23 +5,23 @@ Un outil pour créer un tableau de bord de flux RSS à partir d'un simple fichie
 
 ## Mastodon <aside>Tags Numérique</aside>
 
-- https://mastodon.social/tags/drane.rss
-- https://mastodon.social/tags/num%C3%A9rique.rss
-- https://mastodon.social/tags/num%C3%A9riqueeducatif.rss
-- https://mastodon.social/tags/Ress_num.rss
-- https://mastodon.social/tags/CommunsNum%C3%A9riques.rss
-- https://mastodon.social/tags/LaForge.rss
-- https://mastodon.social/tags/REL.rss
-- https://mastodon.social/tags/LibreEducatif.rss
-- https://mastodon.social/tags/%C3%A9du_num.rss
+- https://piaille.fr/tags/drane.rss
+- https://piaille.fr/tags/num%C3%A9rique.rss
+- https://piaille.fr/tags/num%C3%A9riqueeducatif.rss
+- https://piaille.fr/tags/Ress_num.rss
+- https://piaille.fr/tags/CommunsNum%C3%A9riques.rss
+- https://piaille.fr/tags/LaForge.rss
+- https://piaille.fr/tags/REL.rss
+- https://piaille.fr/tags/LibreEducatif.rss
+- https://piaille.fr/tags/%C3%A9du_num.rss
 
 ## Mastodon <aside>Tags Educ</aside>
-- https://mastodon.social/tags/mastoprof.rss
-- https://mastodon.social/tags/teamprof.rss
-- https://mastodon.social/tags/teameduc.rss
-- https://mastodon.social/tags/prof.rss
-- https://mastodon.social/tags/enseignement.rss
-- https://mastodon.social/tags/%C3%89ducationNationale.rss
+- https://piaille.fr/tags/mastoprof.rss
+- https://piaille.fr/tags/teamprof.rss
+- https://piaille.fr/tags/teameduc.rss
+- https://piaille.fr/tags/prof.rss
+- https://piaille.fr/tags/enseignement.rss
+- https://piaille.fr/tags/%C3%89ducationNationale.rss
 
 ## Vidéos <aside>Philo</aside>
 
