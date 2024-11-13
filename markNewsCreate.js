@@ -217,9 +217,7 @@ function getExtractFirstLine(text) {
 
 async function getRSSFeed(url) {
   // Pour éviter les erreurs CORS
-  const corsProxyList = ["https://corsproxy.io/?", "https://api.allorigins.win/raw?url="];
-
-  for (const corsProxy of corsProxyList) {
+  	const corsProxy = "https://corsproxy.io/?";
 	const urlFeed = corsProxy + encodeURIComponent(url);
 	try {
 		// On récupère le contenu de l'URL
@@ -268,5 +266,4 @@ async function getRSSFeed(url) {
 	} catch (error) {
 		console.log(`Erreur lors de la récupération du flux RSS : ${error.message}`)
 	}
-  }
 }
