@@ -182,5 +182,5 @@ function handleMarkNews(){
 
 function goToNewMarkNews() {
 	const src = document.getElementById('mdSource').value;
-	window.open('https://eyssette.forge.aeif.fr/marknews/#'+src)
+	window.open('https://marknews.forge.apps.education.fr/#'+src)
 }

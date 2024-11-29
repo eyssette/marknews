@@ -49,16 +49,16 @@ let markNewsData = {};
 let markNewsTabs = [];
 
 const tabInfoMD = `
-Ce site a été créé avec [MarkNews](https://eyssette.forge.aeif.fr/marknews), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
+Ce site a été créé avec [MarkNews](https://marknews.forge.apps.education.fr), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
 
 - Auteur : [Cédric Eyssette](https://eyssette.github.io/)
-- Sources sur la [Forge des Communs Numériques Éducatifs](https://forge.aeif.fr/eyssette/marknews)
+- Sources sur la [Forge des Communs Numériques Éducatifs](https://forge.apps.education.fr/eyssette/marknews)
 
 #### Comment créer son propre tableau de bord ?
 
 1. Créez un fichier en Markdown par exemple sur [CodiMD](https://codimd.apps.education.fr/)
 2. Respectez la syntaxe de MarkNews pour créer votre tableau de bord
-3. Votre tableau de bord est alors disponible à l'adresse suivante : https://eyssette.forge.aeif.fr/marknews/#URL (en remplaçant URL par l'URL de votre fichier en markdown). 
+3. Votre tableau de bord est alors disponible à l'adresse suivante : https://marknews.forge.apps.education.fr/#URL (en remplaçant URL par l'URL de votre fichier en markdown). 
 
 Vous pouvez aussi copier l'URL de votre fichier ci-dessous et cliquer sur "Entrer".
 
