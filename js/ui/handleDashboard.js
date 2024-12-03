@@ -5,17 +5,17 @@ function goToNewDashboard(URL) {
 	window.open("https://marknews.forge.apps.education.fr/#" + URL);
 }
 
-function showOnlyThisTab(tabID, links) {
-	for (const link of links) {
+function showOnlyThisTab(tabID, tabsLinks) {
+	for (const link of tabsLinks) {
 		link.parentNode.classList.remove("active");
 	}
-	links[tabID].parentNode.classList.add("active");
+	tabsLinks[tabID].parentNode.classList.add("active");
 }
 
 let newURL;
 
 export function handleDashboard(data, markNewsTabs) {
-	const links = document.querySelectorAll("nav a");
+	const tabsLinks = document.querySelectorAll("nav a");
 	const mainElement = document.getElementById("content");
 	const hash = window.location.hash.substring(1);
 	const actualURL = window.location.search;
@@ -32,7 +32,7 @@ export function handleDashboard(data, markNewsTabs) {
 		if (param) {
 			tabID = param.t - 1 > -1 ? param.t - 1 : 0;
 			if (param.t == "info") {
-				tabID = links.length - 1;
+				tabID = tabsLinks.length - 1;
 			}
 			if (markNewsTabs[tabID] === undefined) {
 				markNewsTabs[tabID] = await getRSSFeedsFromTab(tabID, data);
@@ -40,7 +40,7 @@ export function handleDashboard(data, markNewsTabs) {
 		}
 		document.body.classList.remove("displayLoader");
 		mainElement.innerHTML = markNewsTabs[tabID];
-		showOnlyThisTab(tabID, links);
+		showOnlyThisTab(tabID, tabsLinks);
 		if (param.t === "info") {
 			document.body.classList.remove("displaySections");
 			document.body.classList.add("displayInfo");
@@ -60,12 +60,16 @@ export function handleDashboard(data, markNewsTabs) {
 				document.body.classList.remove("displaySections");
 			}
 		}
+		// Forcer l'ouverture dans un nouvel onglet des liens issus des flux RSS
+		const linksFromRSSFeeds = document.querySelectorAll("main a");
+		linksFromRSSFeeds.forEach((link) => {
+			link.setAttribute("target", "_blank");
+		});
 	}
 
 	// On détecte les clics sur les onglets
-	links.forEach(function (link) {
-		let listenerElement = link;
-		listenerElement.addEventListener("click", function (event) {
+	tabsLinks.forEach(function (link) {
+		link.addEventListener("click", function (event) {
 			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu de l'onglet
 			event.preventDefault();
 			const linkURL = link.href;
