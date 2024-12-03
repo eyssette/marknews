@@ -1,10 +1,9 @@
 import { getParams } from "../utils/urls";
 import { getRSSFeedsFromTab } from "../utils/rss";
 
-// function goToNewMarkNews() {
-// 	const src = document.getElementById("mdSource").value;
-// 	window.open("https://marknews.forge.apps.education.fr/#" + src);
-// }
+function goToNewDashboard(URL) {
+	window.open("https://marknews.forge.apps.education.fr/#" + URL);
+}
 
 function showOnlyThisTab(tabID, links) {
 	for (const link of links) {
@@ -45,6 +44,14 @@ export function handleDashboard(data, markNewsTabs) {
 		if (param.t === "info") {
 			document.body.classList.remove("displaySections");
 			document.body.classList.add("displayInfo");
+			const input = document.getElementById("gotoNewDashboard");
+			input.addEventListener("keydown", (event) => {
+				if (event.key === "Enter") {
+					// Vérifie si la touche appuyée est Entrée
+					event.preventDefault(); // Empêche le comportement par défaut si nécessaire
+					goToNewDashboard(input.value);
+				}
+			});
 		} else {
 			document.body.classList.remove("displayInfo");
 			if (data.RSSfeedstitles[tabID].length > 0) {
@@ -55,11 +62,11 @@ export function handleDashboard(data, markNewsTabs) {
 		}
 	}
 
-	// On détecte les clics sur les liens
+	// On détecte les clics sur les onglets
 	links.forEach(function (link) {
 		let listenerElement = link;
 		listenerElement.addEventListener("click", function (event) {
-			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu du lien
+			// Empêche le comportement par défaut d'ouverture du lien et récupère au contraire le contenu de l'onglet
 			event.preventDefault();
 			const linkURL = link.href;
 			if (linkURL == baseURL || linkURL + "index.html" == baseURL) {

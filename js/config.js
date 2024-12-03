@@ -21,7 +21,7 @@ Ce site a été créé avec [MarkNews](https://marknews.forge.apps.education.fr)
 
 Vous pouvez aussi copier l'URL de votre fichier ci-dessous et cliquer sur "Entrer".
 
-<form onsubmit="goToNewMarkNews()"><input placeholder="URL de votre fichier Markdown" id="mdSource"></form>
+<input placeholder="URL de votre fichier Markdown" id="gotoNewDashboard">
 
 #### Syntaxe de Marknews
 
