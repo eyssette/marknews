@@ -150,7 +150,10 @@ async function RSStoHTML(RSSfeeds, { displaySource: displaySource }) {
 			: "";
 		// Récupération de la date de publication
 		const pubDate = new Date(RSSfeedElement.pubDate);
-		const pubDateToLocaleString = pubDate.toLocaleString();
+		const pubDateToLocaleString =
+			pubDate.toLocaleString() == "Invalid Date"
+				? ""
+				: pubDate.toLocaleString();
 		// Création de l'élément RSS
 		dataHTML =
 			dataHTML +
