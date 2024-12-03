@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 	<meta charset='utf-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -7,7 +8,7 @@
 	<meta name="description" content="Un outil pour faire une veille de flux RSS" />
 	<meta name="author" content="Cédric Eyssette" />
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link rel='stylesheet' type='text/css' href='styles.css'>
+	<link rel='stylesheet' type='text/css' href='css/styles.min.css'>
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
@@ -18,25 +19,26 @@
 	</header>
 
 	<nav id="tabs">
-		<h2><a href="?t=info"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-			<svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 160 160"> 
-				<g fill="#EEE">
-				 <path d="m80 15c-35.88 0-65 29.12-65 65s29.12 65 65 65 65-29.12 65-65-29.12-65-65-65zm0 10c30.36 0 55 24.64 55 55s-24.64 55-55 55-55-24.64-55-55 24.64-55 55-55z"/>
-				 <path d="m57.373 18.231a9.3834 9.1153 0 1 1 -18.767 0 9.3834 9.1153 0 1 1 18.767 0z" transform="matrix(1.1989 0 0 1.2342 21.214 28.75)"/>
-				 <path d="m90.665 110.96c-0.069 2.73 1.211 3.5 4.327 3.82l5.008 0.1v5.12h-39.073v-5.12l5.503-0.1c3.291-0.1 4.082-1.38 4.327-3.82v-30.813c0.035-4.879-6.296-4.113-10.757-3.968v-5.074l30.665-1.105"/>
-				</g></svg>
-		</a></h2>
+		<h2><a href="?t=info">
+				<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="0 0 160 160">
+					<g fill="#EEE">
+						<path
+							d="m80 15c-35.88 0-65 29.12-65 65s29.12 65 65 65 65-29.12 65-65-29.12-65-65-65zm0 10c30.36 0 55 24.64 55 55s-24.64 55-55 55-55-24.64-55-55 24.64-55 55-55z" />
+						<path d="m57.373 18.231a9.3834 9.1153 0 1 1 -18.767 0 9.3834 9.1153 0 1 1 18.767 0z"
+							transform="matrix(1.1989 0 0 1.2342 21.214 28.75)" />
+						<path
+							d="m90.665 110.96c-0.069 2.73 1.211 3.5 4.327 3.82l5.008 0.1v5.12h-39.073v-5.12l5.503-0.1c3.291-0.1 4.082-1.38 4.327-3.82v-30.813c0.035-4.879-6.296-4.113-10.757-3.968v-5.074l30.665-1.105" />
+					</g>
+				</svg>
+			</a></h2>
 	</nav>
 
 	<main id="content">
 		<p>Le chargement des flux RSS peut prendre du temps. Merci de patienter.</p><span id="loader"></span>
 	</main>
 
-	<script src="js-yaml.min.js"></script>
-    <script src="showdown.min.js"></script>
-	<script src="init.js"></script>
-	<script src="markNewsHandle.js"></script>
-	<script src="markNewsCreate.js"></script>
+	<script src="script.min.js"></script>
 
 </body>
 
