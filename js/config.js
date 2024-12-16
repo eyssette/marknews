@@ -5,7 +5,7 @@ export const shortcuts = [
 	["edunum", "https://github.com/eyssette/rss/blob/main/edunum.md"],
 ];
 
-export const corsProxy = "https://corsproxy.io/?";
+export const corsProxy = "https://corsproxy.io/?url=";
 
 export const tabInfoMD = `
 Ce site a été créé avec [MarkNews](https://marknews.forge.apps.education.fr), un outil libre et gratuit qui permet de créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown.
