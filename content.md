@@ -2,6 +2,10 @@
 
 Un outil pour créer un tableau de bord de flux RSS à partir d'un simple fichier en Markdown
 
+## La ressourcerie de la Forge
+
+- https://ressourcerie.forge.apps.education.fr/rss.xml
+
 ## Mastodon <aside>Tags Numérique</aside>
 
 - https://piaille.fr/tags/drane.rss
