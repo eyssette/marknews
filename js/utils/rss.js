@@ -5,6 +5,9 @@ import { yaml } from "../processMarkdown/yaml";
 
 // Fonction pour ne garder qu'un extrait d'un texte
 function extract(txt) {
+	if (!txt) {
+		return "";
+	}
 	const maxWords = 30;
 	const words = txt.split(/\s+/);
 	const firstNwords = words.slice(0, maxWords).join(" ");
@@ -29,7 +32,8 @@ export async function getRSSFeed(url) {
 		// On récupère le contenu de l'URL
 		const response = await fetch(urlFeed);
 		if (!response.ok) {
-			console.log(`${response.status} ${response.statusText}`);
+			throw new Error(`Erreur lors de la récupération du flux RSS : ${url} - 	$	{response.status} ${response.statusText}`,
+			);
 		}
 		// On convertit le flux RSS en objet DOM
 		let xmlString = await response.text();
@@ -111,6 +115,7 @@ export async function getRSSFeed(url) {
 		console.log(
 			`Erreur lors de la récupération du flux RSS : ${error.message}`,
 		);
+		return [{}];
 	}
 }
 
@@ -121,6 +126,9 @@ async function RSStoHTML(RSSfeeds, { displaySource: displaySource }) {
 		let RSSfeedContent;
 		try {
 			RSSfeedContent = await getRSSFeed(RSSfeed);
+			if (RSSfeedContent.length == 0) {
+				continue;
+			}
 			RSSfeedsContent.push(...RSSfeedContent);
 			// Tri selon la date de publication
 			RSSfeedsContent.sort(compareByDate);
